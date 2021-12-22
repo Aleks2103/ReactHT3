@@ -8,9 +8,6 @@ import * as Yup from 'yup'
 
 const Login = ({ handleChange }) => {
 
-    const paperStyle = { padding: 20, height: 450, width: 300, margin: "0 auto" }
-    const avatarStyle = { backgroundColor: '#1bbd7e' }
-    const btnstyle = { margin: '8px 0' }
     const initialValues = {
         username: '',
         password: '',
@@ -30,20 +27,20 @@ const Login = ({ handleChange }) => {
     }
     return (
         <Grid>
-            <Paper style={paperStyle}>
+            <Paper style={{padding: 20, height: 450, width: 300, margin: "0 auto"}}>
                 <Grid align='center'>
-                    <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
+                    <Avatar style={{ backgroundColor: '#1bbd7e' }}><LockOutlinedIcon /></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
                 <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                     {(props) => (
                         <Form>
                             <Field as={TextField} label='Username' name="username"
-                                placeholder='Enter username' fullWidth required
+                                placeholder='Enter username' fullWidth errors='invalid'
                                 helperText={<ErrorMessage name="username" />}
                             />
                             <Field as={TextField} label='Password' name="password"
-                                placeholder='Enter password' type='password' fullWidth required
+                                placeholder='Enter password' type='password' fullWidth errors='invalid'
                                 helperText={<ErrorMessage name="password" />} />
                             <Field as={FormControlLabel}
                                 name='remember'
@@ -53,7 +50,7 @@ const Login = ({ handleChange }) => {
                                 label="Запомните меня"
                             />
                             <Button type='submit' color='primary' variant="contained" disabled={props.isSubmitting}
-                                style={btnstyle} fullWidth>{props.isSubmitting ? "Loading" : "Sign in"}</Button>
+                                style={{ margin: '8px 0' }} fullWidth>{props.isSubmitting ? "Loading" : "Sign in"}</Button>
 
                         </Form>
                     )}
